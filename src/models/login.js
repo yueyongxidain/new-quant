@@ -22,22 +22,9 @@ export default {
             });
             if (response.status === 'ok') {
                 reloadAuthorized();
+                //登陆成功跳转到首页
                 const urlParams = new URL(window.location.href);
-                const params = getPageQuery();
-                let { redirect } = params;
-                if (redirect) {
-                    const redirectUrlParams = new URL(redirect);
-                    if (redirectUrlParams.origin === urlParams.origin) {
-                        redirect = redirect.substr(urlParams.origin.length);
-                        if (redirect.startsWith('/#')) {
-                            redirect = redirect.substr(2);
-                        }
-                    } else {
-                        window.location.href = redirect;
-                        return;
-                    }
-                }
-                yield put(routerRedux.replace(redirect || '/'));
+                window.location.href = urlParams.origin + urlParams.pathname;
             }
         },
         *logout(_, { put }) {
