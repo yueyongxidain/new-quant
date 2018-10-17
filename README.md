@@ -1,9 +1,9 @@
-#quant 项目包-纯净版 使用文档
+# quant 项目包-纯净版 使用文档
 
 
 ------
 
-##一、目录结构
+## 一、目录结构
      |---config 
      |--- public
      |--- scripts
@@ -29,14 +29,14 @@
      |--- package.json           
      |--- yarn.lock
 
-##二、新增页面
-####1、增加js、less文件
+## 二、新增页面
+#### 1、增加js、less文件
   在src/routes下新建页面的js、以及less文件，如果相关页面有多个，可以新建一个文件夹来放置相关文件。
   引入组件的时候只需要在js文件中 ：
 ```
 import { Button } from 'quant-ui';
 ```
-####2、将文件加入菜单和路由
+#### 2、将文件加入菜单和路由
 增加菜单项目需要在src/common/menu.js中如下方式添加即可
 ```
 {
@@ -66,10 +66,10 @@ import { Button } from 'quant-ui';
 },
 ```
 其中数组[]表示绑定的modal import表示页面的入口文件路径
-####3、新增 model、service
+#### 3、新增 model、service
 布局及路由都配置好之后，回到之前新建的 js中，可以开始写业务代码了！如果需要用到数据流，还需要在 src/models src/services 中建立相应的 model 和 service  **具体参考项目包中的modal和services的写法**
 
-##三、请求的发送（和服务端进行交互）
+## 三、请求的发送（和服务端进行交互）
 
 请求流程：
 
@@ -129,8 +129,8 @@ export default {
 
 **yield call(POST, api.xxx.yyy, [payload]);表示返送一个POST请求，请求的api（url）为 api.xxx.yyy 参数为payload**
 
-####页面调用effects方式如下
-#####1、连接到modal
+#### 页面调用effects方式如下
+##### 1、连接到modal
 ```
 export default connect(({ xxx}) => {     //链接到xxx modal上
     const { dataSource } = xxx;          //拿到xxx 的dataSource
@@ -141,7 +141,7 @@ export default connect(({ xxx}) => {     //链接到xxx modal上
     Form.create()()
 )
 ```
-#####2、交互时调用
+##### 2、交互时调用
 ```
  dispatch({
             type: "xxx/find",     //调用xxx下的find
@@ -151,5 +151,5 @@ export default connect(({ xxx}) => {     //链接到xxx modal上
         })
 ```
 
-###ui组件的使用
+### ui组件的使用
 **使用请参考quant-ui http://192.168.100.184:8080/build/#/home**
