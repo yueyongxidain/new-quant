@@ -1,7 +1,7 @@
 import React, { PureComponent } from 'react';
 import { connect } from 'dva';
 import config from "../../common/config"
-import { theme, Menu, Icon, language,utils, Avatar, Dropdown, Button, screenfull, message  } from 'quant-ui';
+import { theme, Menu, Icon, language, utils, Avatar, Dropdown, Button, screenfull, message } from 'quant-ui';
 const { store } = utils;
 const { getCurrentColor, refreshColor, setCurrentColor } = theme;
 let { getCurrentLanguage, setCurrentLanguage, refreshLanguage, getLanguageData } = language;
@@ -32,7 +32,7 @@ const languagemenu = (
     </Menu>
 )
 function languagehandleMenuClick(e) {
-    if(!e.key) return;
+    if (!e.key) return;
     let language = "zh_CN";
     if (e.key === "en_US") {
         language = "en_US"
@@ -89,28 +89,28 @@ class GlobalHeaderRight extends PureComponent {
         }
         let { isMobile } = this.props;
         return (
-                <div className={'RightContent-right'} style={{color:config.isTop&&!isMobile?"white":""}}>
-                    {!isMobile && [
-                        <span onClick={languagehandleMenuClick} key="a2" className="language-icon">
-                            <Dropdown overlay={languagemenu}>
-                                <div><Icon type="setting" style={{fontSize:"14px"}}/> {languageData}</div>
-                            </Dropdown>
-                        </span>,
-                        <Dropdown key="a3" overlay={colormenu}>
-                            <span className="colormenu">
-                                <Icon className="icon" type="skin" style={{fontSize:"14px"}} />
-                            </span>
-                        </Dropdown>,
-                    ]}
-                    <Dropdown overlay={menu}>
-                        <span className={`action account`}>
-                            <Avatar size="small" className={'avatar'} icon="user" />
+            <div className={'RightContent-right'} style={{ color: config.isTop && !isMobile ? "white" : "" }}>
+                {!isMobile && [
+                    <span onClick={languagehandleMenuClick} key="a2" className="language-icon">
+                        <Dropdown overlay={languagemenu}>
+                            <div><Icon type="setting" style={{ fontSize: "14px" }} /> {languageData}</div>
+                        </Dropdown>
+                    </span>,
+                    <Dropdown key="a3" overlay={colormenu}>
+                        <span className="colormenu">
+                            <Icon className="icon" type="skin" style={{ fontSize: "14px" }} />
                         </span>
-                    </Dropdown>
-                    <span onClick={this.screenFull} className="screenFull">
-                        <Icon type={this.state.icontype} />
-                    </span >
-                </div>
+                    </Dropdown>,
+                ]}
+                <Dropdown overlay={menu}>
+                    <span className={`action account`}>
+                        <Avatar size="small" className={'avatar'} icon="user" />
+                    </span>
+                </Dropdown>
+                <span onClick={this.screenFull} className="screenFull">
+                    <Icon type={this.state.icontype} />
+                </span >
+            </div>
         );
     }
 }

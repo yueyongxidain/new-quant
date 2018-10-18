@@ -1,8 +1,8 @@
 /*
  * @Author: 刘文柱 
  * @Date: 2018-10-18 10:08:30 
- * @Last Modified by:   刘文柱 
- * @Last Modified time: 2018-10-18 10:08:30 
+ * @Last Modified by: 刘文柱
+ * @Last Modified time: 2018-10-18 10:21:13
  */
 import fetch from 'dva/fetch';
 import { notification,message ,language} from 'quant-ui';
@@ -169,6 +169,12 @@ function GET(url,params,showMessage) {
 
 /**
  * 观看代码人看到此处请不要吐槽前端开发，完全是被后台逼的
+ */
+/**
+ * 
+ * @param {string} url 请求地址
+ * @param {any} params 请求参数
+ * @param {Boolean} showMessage 是否显示错误提示，默认为false 
  */
 function POST(url, params,showMessage) {
     let _params = { 'params': JSON.stringify(params) }
