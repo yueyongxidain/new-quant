@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'dva/router';
-import {Exception} from 'quant-ui';
+import { Exception } from 'quant-ui';
 
 export default () => (
-  <Exception type="404" style={{ minHeight: 500, height: '80%' }} linkElement={Link} />
+    <Exception type="404" style={{ minHeight: 500, height: '80%' }} linkElement={Link} />
 );
