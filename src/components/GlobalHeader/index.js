@@ -1,5 +1,11 @@
+/*
+ * @Author: 刘文柱 
+ * @Date: 2018-10-18 10:10:33 
+ * @Last Modified by:   刘文柱 
+ * @Last Modified time: 2018-10-18 10:10:33 
+ */
 import React, { PureComponent } from 'react';
-import { theme, Menu, Icon, language,utils, Avatar, Dropdown, Button, screenfull, message } from 'quant-ui';
+import { theme, Icon, language,utils,  } from 'quant-ui';
 import { Link } from 'dva/router';
 import { connect } from 'dva';
 import config from "../../common/config.js";

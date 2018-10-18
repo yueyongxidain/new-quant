@@ -1,11 +1,15 @@
+/*
+ * @Author: 刘文柱 
+ * @Date: 2018-10-18 10:10:08 
+ * @Last Modified by:   刘文柱 
+ * @Last Modified time: 2018-10-18 10:10:08 
+ */
 import React, { PureComponent } from 'react';
 import { Layout, Menu, Icon } from 'quant-ui';
 import pathToRegexp from 'path-to-regexp';
 import { Link } from 'dva/router';
-import classNames from 'classnames';
 import { urlToList } from '../_utils/pathTools';
 
-const { Sider } = Layout;
 const { SubMenu } = Menu;
 
 // Allow menu.js config icon as string or ReactNode

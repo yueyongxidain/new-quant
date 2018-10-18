@@ -1,3 +1,9 @@
+/*
+ * @Author: 刘文柱 
+ * @Date: 2018-10-18 10:10:38 
+ * @Last Modified by:   刘文柱 
+ * @Last Modified time: 2018-10-18 10:10:38 
+ */
 import { language, Icon } from "quant-ui";
 import React from 'react';
 import Logo from '../assets/logo.png';

@@ -1,3 +1,9 @@
+/*
+ * @Author: 刘文柱 
+ * @Date: 2018-10-18 10:08:54 
+ * @Last Modified by:   刘文柱 
+ * @Last Modified time: 2018-10-18 10:08:54 
+ */
 import React from 'react';
 import { routerRedux, Route, Switch } from 'dva/router';
 import { LocaleProvider, language } from 'quant-ui';

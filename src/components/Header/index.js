@@ -1,3 +1,9 @@
+/*
+ * @Author: 刘文柱 
+ * @Date: 2018-10-18 10:10:14 
+ * @Last Modified by:   刘文柱 
+ * @Last Modified time: 2018-10-18 10:10:14 
+ */
 import React, { PureComponent } from 'react';
 import { Layout } from 'quant-ui';
 import { connect } from 'dva';
