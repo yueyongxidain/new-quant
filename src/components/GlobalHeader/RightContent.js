@@ -42,7 +42,7 @@ function languagehandleMenuClick(e) {
 }
 class GlobalHeaderRight extends PureComponent {
     state = {
-        icontype: "arrows-alt"
+        icontype: "fullscreen"
     }
     onMenuClick = ({ key }) => {
         const { dispatch } = this.props;
@@ -59,10 +59,10 @@ class GlobalHeaderRight extends PureComponent {
     screenFull = () => {
         if (screenfull.enabled) {
             if (screenfull.isFullscreen) {
-                this.setState({ icontype: 'arrows-alt' });
+                this.setState({ icontype: 'fullscreen' });
                 screenfull.exit();
             } else {
-                this.setState({ icontype: 'shrink' });
+                this.setState({ icontype: 'fullscreen-exit' });
                 screenfull.request();
             }
 

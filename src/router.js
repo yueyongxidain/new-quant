@@ -1,8 +1,8 @@
 /*
  * @Author: 刘文柱 
  * @Date: 2018-10-18 10:08:54 
- * @Last Modified by:   刘文柱 
- * @Last Modified time: 2018-10-18 10:08:54 
+ * @Last Modified by: 刘文柱
+ * @Last Modified time: 2018-10-18 13:30:35
  */
 import React from 'react';
 import { routerRedux, Route, Switch } from 'dva/router';
@@ -32,9 +32,7 @@ function RouterConfig({ history, app }) {
                         path="/"
                         render={props => <BasicLayout {...props} />}
                         authority={['admin', 'user']}
-                        redirectPath={getQueryPath('/user/login', {
-                            redirect: window.location.href,
-                        })}
+                        redirectPath={getQueryPath('/user/login')}
                     />
                 </Switch>
             </ConnectedRouter>
