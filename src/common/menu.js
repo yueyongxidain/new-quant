@@ -1,8 +1,8 @@
 /*
  * @Author: 刘文柱 
  * @Date: 2018-10-18 10:10:52 
- * @Last Modified by:   刘文柱 
- * @Last Modified time: 2018-10-18 10:10:52 
+ * @Last Modified by: 刘文柱
+ * @Last Modified time: 2018-10-19 13:16:44
  */
 import { isUrl } from '../utils/utils';
 
@@ -11,22 +11,7 @@ const menuData = [
         name: 'dashboard',
         icon: 'dashboard',
         path: 'dashboard',
-        children: [
-            {
-                name: '分析页',
-                path: 'analysis',
-            },
-            {
-                name: '监控页',
-                path: 'monitor',
-            },
-            {
-                name: '工作台',
-                path: 'workplace',
-                // hideInBreadcrumb: true,
-                // hideInMenu: true,
-            },
-        ],
+        
     },
     {
         name: '表单页',

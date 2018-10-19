@@ -1,8 +1,8 @@
 /*
  * @Author: 刘文柱 
  * @Date: 2018-10-18 10:15:16 
- * @Last Modified by:   刘文柱 
- * @Last Modified time: 2018-10-18 10:15:16 
+ * @Last Modified by: 刘文柱
+ * @Last Modified time: 2018-10-19 13:16:16
  */
 import React, { createElement } from 'react';
 import { Spin } from 'quant-ui';
@@ -104,6 +104,10 @@ export const getRouterData = app => {
         '/': {
             component: dynamicWrapper(app, ['login'], () => import('../layouts/BasicLayout')),
         },
+        "/dashboard": {
+            component: dynamicWrapper(app, ['login'], () => import('../routes/dashboard/index.js')),
+        },
+
 
         '/exception/403': {
             component: dynamicWrapper(app, [], () => import('../routes/Exception/403')),
