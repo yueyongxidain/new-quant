@@ -2,7 +2,7 @@
  * @Author: 刘文柱 
  * @Date: 2018-10-18 10:08:30 
  * @Last Modified by: 刘文柱
- * @Last Modified time: 2018-10-18 10:21:13
+ * @Last Modified time: 2018-11-02 17:07:32
  */
 import fetch from 'dva/fetch';
 import { notification,message ,language} from 'quant-ui';
@@ -27,62 +27,15 @@ const codeMessage = {
     503: $('服务不可用，服务器暂时过载或维护。'),
     504: $('网关超时。'),
 };
-const frameCodeMessage = {
-    101:$("无权限访问"),
-    102:$("访问版本不支持"),
-    103:$("会话失效"),
-    104:$("请求无对应服务"),
-    105:$("请求接口错误"),
-    106:$("返回对象无法做json对象转换"),
-    107:$("请求参数个数错误"),
-    108:$("请求参数类型错误"),
-    109:$("请求参数无法转换java对象"),
-    110:$("后台业务处理遇到未知错误"),
-    111:$("entity定义错误，没有主键Id"),
-    112:$("数据库无法获得连接"),
-    113:$("字段验证发生异常"),
-    114:$("服务访问过频"),
-}
 const requestHeader = {
     'Accept': 'text/plain;',
     'Content-Type': 'application/json',
     'mode': "cors",
-    'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8',
 }
 function parseJSON(response) {
     return response.json();
 }
 function checkStatus(response) {
-
-    let frameCode = response.headers.get('error_code');
-    if(!!frameCode){
-        if(frameCode == 100){
-            const error = new Error();
-            error.name = 401;
-            error.response = response;
-            throw error;
-        }
-
-        if(frameCode == 101){
-            const error = new Error();
-            error.name = 403;
-            error.response = response;
-            throw error;
-        }
-
-        if(frameCode < 200){
-            const errortext = frameCodeMessage[frameCode]
-            notification.error({
-                message: `${$("请求错误")} ${frameCode}: ${response.url}`,
-                description: errortext,
-            });
-            const error = new Error(errortext);
-            error.name = frameCode;
-            error.response = response;
-            throw error;
-        }
-    }
-    
     if (response.status >= 200 && response.status < 300) {
         return response;
     }
@@ -111,8 +64,6 @@ function request(url, newOptions,showMessage = true) {
         .then(data => {
             if (data.errorCode == 0) {
                 let resData = data;
-                if (resData != '' && resData.data != '')
-                    resData.data = JSON.parse(resData.data)
                 return resData;
             } else {
                 showMessage&&message.error(data.errorMsg)
@@ -156,20 +107,21 @@ function request(url, newOptions,showMessage = true) {
             }
         });
 }
-
+/**
+ * 
+ * @param {string} url 请求地址
+ * @param {any} params 请求参数
+ * @param {Boolean} showMessage 是否显示错误提示，默认为false 
+ */
 function GET(url,params,showMessage) {
-
-    return request(url, {
-        method: "POST",
+    let _params = !!params?"?"+stringify(params) : "";
+    return request(url + _params, {
+        method: "GET",
         headers:requestHeader,
-        body: stringify(params),
         credentials: 'include'
     },showMessage)
 }
 
-/**
- * 观看代码人看到此处请不要吐槽前端开发，完全是被后台逼的
- */
 /**
  * 
  * @param {string} url 请求地址
@@ -177,15 +129,11 @@ function GET(url,params,showMessage) {
  * @param {Boolean} showMessage 是否显示错误提示，默认为false 
  */
 function POST(url, params,showMessage) {
-    let _params = { 'params': JSON.stringify(params) }
     return request(url, {
         method: "POST",
         headers:requestHeader,
-        body: stringify(_params),
+        body: JSON.stringify(params),
         credentials: 'include',
-        'Accept': 'text/plain;',
-        'Content-Type': 'application/json',
-        'mode': "cors",
     },showMessage)
 }
 function UploadMethod(url,params,showMessage){
@@ -211,9 +159,7 @@ function Download(url,fileName,type,entity,params){
     if(argsCount < 4) {
         throw new Error('call export with wrong params.');
     }
-
     var params = params;
-
     var requestParams = {
         args: JSON.stringify(params),
         fileName: fileName,
