@@ -1,3 +1,9 @@
+/*
+ * @Author: 刘文柱 
+ * @Date: 2018-11-02 11:05:59 
+ * @Last Modified by:   刘文柱 
+ * @Last Modified time: 2018-11-02 11:05:59 
+ */
 import { routerRedux } from 'dva/router';
 import { setAuthority,setUserUserlogin,removeUserUserlogin } from '../utils/authority';
 import { reloadAuthorized } from '../utils/Authorized';
@@ -7,7 +13,6 @@ export default {
     state: {
         remember:remember
     },
-
     effects: {
         *login({ payload }, { call, put ,select}) {
             const response = {

@@ -1,28 +1,26 @@
-
-
 export default {
-  namespace: 'global',
+    namespace: 'global',
 
-  state: {
-    collapsed: false,
-   
-  },
+    state: {
+        collapsed: false,
 
-  effects: {
-    
-  },
-
-  reducers: {
-    changeLayoutCollapsed(state, { payload }) {
-      return {
-        ...state,
-        collapsed: payload,
-      };
     },
-    
-  },
 
-  subscriptions: {
-    
-  },
+    effects: {
+
+    },
+
+    reducers: {
+        changeLayoutCollapsed(state, { payload }) {
+            return {
+                ...state,
+                collapsed: payload,
+            };
+        },
+
+    },
+
+    subscriptions: {
+
+    },
 };
