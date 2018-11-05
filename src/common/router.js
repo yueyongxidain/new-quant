@@ -2,7 +2,7 @@
  * @Author: 刘文柱 
  * @Date: 2018-10-18 10:15:16 
  * @Last Modified by: 刘文柱
- * @Last Modified time: 2018-10-22 15:03:01
+ * @Last Modified time: 2018-11-05 10:13:15
  */
 import React, { createElement } from 'react';
 import { Spin } from 'quant-ui';
@@ -146,9 +146,7 @@ export const getRouterData = app => {
             menuItem = menuData[menuKey];
         }
         let router = routerConfig[path];
-        // If you need to configure complex parameter routing,
-        // https://github.com/ant-design/ant-design-pro-site/blob/master/docs/router-and-nav.md#%E5%B8%A6%E5%8F%82%E6%95%B0%E7%9A%84%E8%B7%AF%E7%94%B1%E8%8F%9C%E5%8D%95
-        // eg . /list/:type/user/info/:id
+        
         router = {
             ...router,
             name: router.name || menuItem.name,
