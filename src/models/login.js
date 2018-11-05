@@ -1,17 +1,16 @@
 /*
  * @Author: 刘文柱 
  * @Date: 2018-11-02 11:05:59 
- * @Last Modified by:   刘文柱 
- * @Last Modified time: 2018-11-02 11:05:59 
+ * @Last Modified by: 刘文柱
+ * @Last Modified time: 2018-11-05 17:18:06
  */
 import { routerRedux } from 'dva/router';
-import { setAuthority,setUserUserlogin,removeUserUserlogin } from '../utils/authority';
+import { setAuthority,setUserUserlogin,removeUserUserlogin,getRemember,setRemember } from '../utils/authority';
 import { reloadAuthorized } from '../utils/Authorized';
-let remember = !window.localStorage.getItem("qdp-remember")? true:JSON.parse(window.localStorage.getItem("qdp-remember"))
 export default {
     namespace: 'login',
     state: {
-        remember:remember
+        remember:getRemember()
     },
     effects: {
         *login({ payload }, { call, put ,select}) {
@@ -61,7 +60,7 @@ export default {
             };
         },
         changeCheckbox(state, { payload }){
-            window.localStorage.setItem("qdp-remember",JSON.stringify(payload.remember))
+            setRemember(payload.remember)
             return {
                 ...state,
                 ...payload
