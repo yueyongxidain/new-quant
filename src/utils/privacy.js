@@ -2,14 +2,14 @@
  * @Author: 刘文柱 
  * @Date: 2018-10-18 10:16:40 
  * @Last Modified by: 刘文柱
- * @Last Modified time: 2018-10-18 10:22:49
+ * @Last Modified time: 2018-11-05 10:04:29
  */
 
- /**
-  * 
-  * @param {any} a 加密数据
-  * @param {string} b 加密密钥
-  */
+/**
+ * 
+ * @param {any} a 加密数据
+ * @param {string} b 加密密钥
+ */
 export function encrypt(a, b) {
     if (b == null || b.length <= 0) {
         console.log("key cannot be empty");

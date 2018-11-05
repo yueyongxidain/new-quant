@@ -2,17 +2,17 @@
  * @Author: 刘文柱 
  * @Date: 2018-10-18 10:08:38 
  * @Last Modified by: 刘文柱
- * @Last Modified time: 2018-10-18 13:08:43
+ * @Last Modified time: 2018-11-05 10:04:11
  */
 import { utils } from "quant-ui";
 import { encrypt,decrypt } from "./privacy";
 const { getCookie ,setCookie,removeCookie} = utils;
 //设置权限
 export function getAuthority() {
-  return localStorage.getItem('antd-pro-authority') || 'admin';
+  return localStorage.getItem('quant-authority') || 'admin';
 }
 export function setAuthority(authority) {
-  return localStorage.setItem('antd-pro-authority', authority);
+  return localStorage.setItem('quant-authority', authority);
 }
 
 //设置密码
