@@ -2,7 +2,7 @@
  * @Author: 刘文柱 
  * @Date: 2018-11-02 11:05:59 
  * @Last Modified by: 刘文柱
- * @Last Modified time: 2018-11-05 17:18:06
+ * @Last Modified time: 2018-11-05 17:22:00
  */
 import { routerRedux } from 'dva/router';
 import { setAuthority,setUserUserlogin,removeUserUserlogin,getRemember,setRemember } from '../utils/authority';
@@ -10,19 +10,20 @@ import { reloadAuthorized } from '../utils/Authorized';
 export default {
     namespace: 'login',
     state: {
+        status:false,
         remember:getRemember()
     },
     effects: {
         *login({ payload }, { call, put ,select}) {
             const response = {
-                status: 'ok',
+                status: true,
                 currentAuthority: 'admin',
             };
             yield put({
                 type: 'changeLoginStatus',
                 payload: response,
             });
-            if (response.status === 'ok') {
+            if (response.status === true) {
                 let remember = yield select(({login}) => login.remember)
                 if(!!remember){
                     setUserUserlogin(payload)
@@ -39,6 +40,7 @@ export default {
             yield put({
                 type: 'changeLoginStatus',
                 payload: {
+                    status:false,
                     currentAuthority: 'guest',
                 },
             });
@@ -56,7 +58,7 @@ export default {
             setAuthority(payload.currentAuthority);
             return {
                 ...state,
-                type: payload.type,
+                ...payload
             };
         },
         changeCheckbox(state, { payload }){
