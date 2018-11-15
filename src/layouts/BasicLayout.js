@@ -1,14 +1,14 @@
 import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
-import { Layout, Icon, message } from 'quant-ui';
+import { Layout } from 'quant-ui';
 import DocumentTitle from 'react-document-title';
 import { connect } from 'dva';
-import { Route, Redirect, Switch, routerRedux } from 'dva/router';
+import { Route, Redirect, Switch } from 'dva/router';
 import { ContainerQuery } from 'react-container-query';
 import classNames from 'classnames';
 import pathToRegexp from 'path-to-regexp';
 import { enquireScreen, unenquireScreen } from 'enquire-js';
-import GlobalHeader from '../components/GlobalHeader';
+import GlobalFooter from '../components/GlobalFooter';
 import SiderMenu from '../components/SiderMenu';
 import NotFound from '../routes/Exception/404';
 import { getRoutes } from '../utils/utils';
@@ -214,7 +214,7 @@ class BasicLayout extends React.PureComponent {
                             <Route render={NotFound} />
                         </Switch>
                     </Content>
-                    
+                    <GlobalFooter />
                 </Layout>
             </Layout>
         );

@@ -3,6 +3,7 @@ import { Link, Redirect, Switch, Route } from 'dva/router';
 import DocumentTitle from 'react-document-title';
 import { getRoutes, getPageQuery, getQueryPath } from '../utils/utils';
 import config from '../common/config';
+import GlobalFooter from '../components/GlobalFooter';
 
 function getLoginPathWithRedirectPath() {
     const params = getPageQuery();
@@ -11,7 +12,6 @@ function getLoginPathWithRedirectPath() {
         redirect,
     });
 }
-
 class UserLayout extends React.PureComponent {
     getPageTitle() {
         const { routerData, location } = this.props;
@@ -27,7 +27,7 @@ class UserLayout extends React.PureComponent {
         const { routerData, match } = this.props;
         return (
             <DocumentTitle title={this.getPageTitle()}>
-                <div className={'UserLayout-container'} style={{backgroundImage:`url(${ config.LOGIN_BG })`}}>
+                <div className={'UserLayout-container'} style={{ backgroundImage: `url(${config.LOGIN_BG})` }}>
                     <div className={'UserLayout-content'}>
                         <div className={'UserLayout-top'}>
                             <div className={'UserLayout-header'}>
@@ -49,6 +49,7 @@ class UserLayout extends React.PureComponent {
                             <Redirect from="/user" to={getLoginPathWithRedirectPath()} />
                         </Switch>
                     </div>
+                    <GlobalFooter />
                 </div>
             </DocumentTitle>
         );

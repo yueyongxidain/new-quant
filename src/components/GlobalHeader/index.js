@@ -1,24 +1,19 @@
 /*
  * @Author: 刘文柱 
  * @Date: 2018-10-18 10:10:33 
- * @Last Modified by:   刘文柱 
- * @Last Modified time: 2018-10-18 10:10:33 
+ * @Last Modified by: 刘文柱
+ * @Last Modified time: 2018-11-15 18:43:02
  */
 import React, { PureComponent } from 'react';
-import { theme, Icon, language,utils,  } from 'quant-ui';
+import { Icon, } from 'quant-ui';
 import { Link } from 'dva/router';
 import { connect } from 'dva';
-import config from "../../common/config.js";
+import config from "@/common/config.js";
 import RightContent from "./RightContent.js";
-const { store } = utils;
-const { getCurrentColor, refreshColor, setCurrentColor } = theme;
-let { getCurrentLanguage, setCurrentLanguage, refreshLanguage, getLanguageData } = language;
-let $ = getLanguageData;
 class GlobalHeader extends PureComponent {
     state = {
         icontype: "arrows-alt"
     }
-
     toggle = () => {
         const { collapsed, onCollapse } = this.props;
         onCollapse(!collapsed);
@@ -29,8 +24,6 @@ class GlobalHeader extends PureComponent {
         event.initEvent('resize', true, false);
         window.dispatchEvent(event);
     }
-    
-    
     render() {
         const {
             collapsed,
@@ -49,7 +42,7 @@ class GlobalHeader extends PureComponent {
                     type={collapsed ? 'menu-unfold' : 'menu-fold'}
                     onClick={this.toggle}
                 />
-                <RightContent isMobile={isMobile}/>
+                <RightContent isMobile={isMobile} />
             </div>
 
         );

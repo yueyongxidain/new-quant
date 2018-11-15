@@ -1,7 +1,7 @@
 import React, { PureComponent } from 'react';
 import { connect } from 'dva';
-import config from "../../common/config"
-import { theme, Menu, Icon, language, utils, Avatar, Dropdown, Button, screenfull, message } from 'quant-ui';
+import config from "@/common/config"
+import { theme, Menu, Icon, language, utils, Avatar, Dropdown, screenfull, message } from 'quant-ui';
 const { store } = utils;
 const { getCurrentColor, refreshColor, setCurrentColor } = theme;
 let { getCurrentLanguage, setCurrentLanguage, refreshLanguage, getLanguageData } = language;
@@ -54,7 +54,6 @@ class GlobalHeaderRight extends PureComponent {
             store.remove("layout")
             message.success($('清除成功'));
         }
-
     }
     screenFull = () => {
         if (screenfull.enabled) {
@@ -65,7 +64,6 @@ class GlobalHeaderRight extends PureComponent {
                 this.setState({ icontype: 'fullscreen-exit' });
                 screenfull.request();
             }
-
         }
     }
     render() {
