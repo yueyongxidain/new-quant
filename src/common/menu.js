@@ -2,7 +2,7 @@
  * @Author: 刘文柱 
  * @Date: 2018-10-18 10:10:52 
  * @Last Modified by: 刘文柱
- * @Last Modified time: 2018-10-19 13:16:44
+ * @Last Modified time: 2018-11-15 18:22:35
  */
 import { isUrl } from '../utils/utils';
 
@@ -11,7 +11,7 @@ const menuData = [
         name: 'dashboard',
         icon: 'dashboard',
         path: 'dashboard',
-        
+
     },
     {
         name: '表单页',

@@ -2,7 +2,7 @@
  * @Author: 刘文柱 
  * @Date: 2018-10-18 10:06:22 
  * @Last Modified by: 刘文柱
- * @Last Modified time: 2018-11-15 13:08:14
+ * @Last Modified time: 2018-11-15 18:23:49
  */
 import moment from 'moment';
 import { parse, stringify } from 'qs';
@@ -24,9 +24,13 @@ const colLayout = {
     lg: 12,
 }
 const gutter = { md: 4, lg: 8, xl: 16 };
+
+//常见两列布局
 export { gutter }
 export { colLayout }
 export { formLayout }
+
+
 export function fixedZero(val) {
     return val * 1 < 10 ? `0${val}` : val;
 }

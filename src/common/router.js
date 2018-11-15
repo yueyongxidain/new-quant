@@ -2,7 +2,7 @@
  * @Author: 刘文柱 
  * @Date: 2018-10-18 10:15:16 
  * @Last Modified by: 刘文柱
- * @Last Modified time: 2018-11-05 10:13:15
+ * @Last Modified time: 2018-11-15 18:22:48
  */
 import React, { createElement } from 'react';
 import { Spin } from 'quant-ui';
@@ -104,7 +104,7 @@ export const getRouterData = app => {
         '/': {
             component: dynamicWrapper(app, ['login'], () => import('../layouts/BasicLayout')),
         },
-        
+
 
 
         '/exception/403': {
@@ -122,6 +122,9 @@ export const getRouterData = app => {
         },
         '/user/login': {
             component: dynamicWrapper(app, ['login'], () => import('../routes/User/Login')),
+        },
+        '/user/register': {
+            component: dynamicWrapper(app, ['register'], () => import('../routes/User/Register')),
         },
 
     };
@@ -146,7 +149,7 @@ export const getRouterData = app => {
             menuItem = menuData[menuKey];
         }
         let router = routerConfig[path];
-        
+
         router = {
             ...router,
             name: router.name || menuItem.name,
