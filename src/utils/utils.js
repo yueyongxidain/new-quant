@@ -2,11 +2,31 @@
  * @Author: 刘文柱 
  * @Date: 2018-10-18 10:06:22 
  * @Last Modified by: 刘文柱
- * @Last Modified time: 2018-10-18 10:08:22
+ * @Last Modified time: 2018-11-15 13:08:14
  */
 import moment from 'moment';
 import { parse, stringify } from 'qs';
 
+const formLayout = {
+    labelCol: {
+        xs: { span: 24 },
+        sm: { span: 10 },
+        md: { span: 8 },
+    },
+    wrapperCol: {
+        xs: { span: 24 },
+        sm: { span: 14 },
+        md: { span: 16 },
+    },
+}
+const colLayout = {
+    md: 24,
+    lg: 12,
+}
+const gutter = { md: 4, lg: 8, xl: 16 };
+export { gutter }
+export { colLayout }
+export { formLayout }
 export function fixedZero(val) {
     return val * 1 < 10 ? `0${val}` : val;
 }

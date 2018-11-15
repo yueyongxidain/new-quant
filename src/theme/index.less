@@ -2,8 +2,9 @@
  * @Author: 刘文柱 
  * @Date: 2018-11-02 11:05:03 
  * @Last Modified by: 刘文柱
- * @Last Modified time: 2018-11-02 16:16:26
+ * @Last Modified time: 2018-11-15 13:08:31
  */
+
 @import "../components/SiderMenu/index.less";
 @import "../components/GlobalHeader/index.less";
 @import "../routes/User/Login.less";
@@ -14,17 +15,27 @@
     width: 100%;
     margin: 40px 0 !important;
 }
+
 //立体动画
-.hover-shadow{
+.hover-shadow {
     transition: all .3s;
 }
-.hover-shadow:hover{
-    box-shadow:2px 2px 10px 4px rgba(0, 0, 0, 0.15);
+
+.hover-shadow:hover {
+    box-shadow: 2px 2px 10px 4px rgba(0, 0, 0, 0.15);
 }
+
 //end
+.btns-group {
+    margin-top: 20px;
+    button {
+        margin-right: 14px;
+    }
+}
 
 //滚动条样式
 /* 设置滚动条的样式 */
+
 ::-webkit-scrollbar {
     width: 10px;
     height: 10px;
@@ -91,4 +102,5 @@
 ::-webkit-scrollbar-button:end:active {
     background: none;
 }
+
 /*设置滚动条的样式end*/
