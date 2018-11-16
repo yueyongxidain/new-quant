@@ -2,7 +2,7 @@
  * @Author: 刘文柱 
  * @Date: 2018-10-18 10:08:30 
  * @Last Modified by: 刘文柱
- * @Last Modified time: 2018-11-16 17:19:23
+ * @Last Modified time: 2018-11-16 17:21:17
  */
 import fetch from 'dva/fetch';
 import { notification, message, language } from 'quant-ui';
@@ -111,7 +111,7 @@ function request(url, newOptions, showMessage = true) {
  * 
  * @param {string} url 请求地址
  * @param {any} params 请求参数
- * @param {Boolean} showMessage 是否显示错误提示，默认为false 
+ * @param {Boolean} showMessage 是否显示错误提示，默认为true
  */
 function GET(url, params, showMessage) {
     let _params = !!params ? "?" + stringify(params) : "";
@@ -126,7 +126,7 @@ function GET(url, params, showMessage) {
  * 
  * @param {string} url 请求地址
  * @param {any} params 请求参数
- * @param {Boolean} showMessage 是否显示错误提示，默认为false 
+ * @param {Boolean} showMessage 是否显示错误提示，默认为true
  */
 function POST(url, params, showMessage) {
     return request(url, {
