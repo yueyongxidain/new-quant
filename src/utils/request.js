@@ -2,10 +2,10 @@
  * @Author: 刘文柱 
  * @Date: 2018-10-18 10:08:30 
  * @Last Modified by: 刘文柱
- * @Last Modified time: 2018-11-02 17:07:32
+ * @Last Modified time: 2018-11-16 17:19:23
  */
 import fetch from 'dva/fetch';
-import { notification,message ,language} from 'quant-ui';
+import { notification, message, language } from 'quant-ui';
 import { routerRedux } from 'dva/router';
 import store from '../index';
 import { stringify } from 'qs';
@@ -57,7 +57,7 @@ function checkStatus(response) {
  * @param  {object} [options] The options we want to pass to "fetch"
  * @return {object}           An object containing either "data" or "err"
  */
-function request(url, newOptions,showMessage = true) {
+function request(url, newOptions, showMessage = true) {
     return fetch(url, newOptions)
         .then(checkStatus)
         .then(parseJSON)
@@ -66,7 +66,7 @@ function request(url, newOptions,showMessage = true) {
                 let resData = data;
                 return resData;
             } else {
-                showMessage&&message.error(data.errorMsg)
+                showMessage && message.error(data.errorMsg)
                 return data
             }
         })
@@ -77,33 +77,33 @@ function request(url, newOptions,showMessage = true) {
                 dispatch({
                     type: 'login/logout',
                 });
-                return{
-                    errorCode:1,
+                return {
+                    errorCode: 1,
                 };
             }
             if (status === 403) {
                 dispatch(routerRedux.push('/exception/403'));
-                return{
-                    errorCode:1,
+                return {
+                    errorCode: 1,
                 };
             }
             if (status <= 504 && status >= 500) {
                 dispatch(routerRedux.push('/exception/500'));
-                return{
-                    errorCode:1,
+                return {
+                    errorCode: 1,
                 };
             }
             if (status >= 404 && status < 422) {
                 dispatch(routerRedux.push('/exception/404'));
-                return{
-                    errorCode:1,
+                return {
+                    errorCode: 1,
                 };
             }
             // showMessage&&notification.error({
             //     message: `请求错误 返回数据不存在！`,
             // });
             return {
-                errorCode:1,
+                errorCode: 1,
             }
         });
 }
@@ -113,13 +113,13 @@ function request(url, newOptions,showMessage = true) {
  * @param {any} params 请求参数
  * @param {Boolean} showMessage 是否显示错误提示，默认为false 
  */
-function GET(url,params,showMessage) {
-    let _params = !!params?"?"+stringify(params) : "";
+function GET(url, params, showMessage) {
+    let _params = !!params ? "?" + stringify(params) : "";
     return request(url + _params, {
         method: "GET",
-        headers:requestHeader,
+        headers: requestHeader,
         credentials: 'include'
-    },showMessage)
+    }, showMessage)
 }
 
 /**
@@ -128,69 +128,16 @@ function GET(url,params,showMessage) {
  * @param {any} params 请求参数
  * @param {Boolean} showMessage 是否显示错误提示，默认为false 
  */
-function POST(url, params,showMessage) {
+function POST(url, params, showMessage) {
     return request(url, {
         method: "POST",
-        headers:requestHeader,
+        headers: requestHeader,
         body: JSON.stringify(params),
         credentials: 'include',
-    },showMessage)
+    }, showMessage)
 }
-function UploadMethod(url,params,showMessage){
-    return request(url, {
-        method: "POST",
-        body: params,
-        credentials: "include"
-    },showMessage).then(resData => {
-        let data = resData.data;
-        if(!!data){
-            if(data.errorCode > 100){
-                message.error( data.errorMsg)
-            }else{
-                message.success(data.errorMsg)
-            }
-            return data
-        }
-        return resData
-    })
-}
-function Download(url,fileName,type,entity,params){
-    var argsCount = arguments.length;
-    if(argsCount < 4) {
-        throw new Error('call export with wrong params.');
-    }
-    var params = params;
-    var requestParams = {
-        args: JSON.stringify(params),
-        fileName: fileName,
-        type: type,
-        entity: JSON.stringify(entity)
-    }
 
-    var frameName = "downloadFrame_" + Math.floor(Math.random() * 1000);
-    var iframe = document.createElement("iframe");
-    iframe.name = frameName;
-    iframe.style.display = "none";
 
-    var input = document.createElement("input");
-    input.type = "hidden";
-    input.name = "params";
-    input.value = JSON.stringify(requestParams);
-
-    var form = document.createElement("form");
-    form.target = frameName;
-    form.method = "POST";
-    form.action = url;
-    form.style.display = "none";
-
-    form.appendChild(input);
-    iframe.appendChild(form);
-
-    document.body.appendChild(iframe);
-    form.submit();
-}
 export { GET };
 export { POST };
-export { Download };
-export { UploadMethod };
 
