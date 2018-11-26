@@ -184,7 +184,7 @@ class BasicLayout extends React.PureComponent {
                     isMobile={mb}
                     onCollapse={this.handleMenuCollapse}
                 />}
-                <Layout style={{height:isTop?"100vh":""}}>
+                <Layout style={{minHeight:isTop?"100vh":""}}>
                     <Header
                         logo={collapsed?config.LOGO:config.LOGOANTTITLE}
                         Authorized={Authorized}
@@ -195,7 +195,7 @@ class BasicLayout extends React.PureComponent {
                         onCollapse={this.handleMenuCollapse}
                         {...this.props}
                     />
-                    <Content style={{ margin: '24px 24px 0', height: '100%' }}>
+                    <Content style={{ margin: '24px 0 0 0', height: '100%' }}>
                         <Switch>
                             {redirectData.map(item => (
                                 <Redirect key={item.from} exact from={item.from} to={item.to} />
