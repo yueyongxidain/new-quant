@@ -3,7 +3,7 @@ import { Link } from 'dva/router';
 import {PageHeader} from 'quant-ui';
 
 export default ({ children, wrapperClassName, top, ...restProps }) => (
-  <div style={{ margin: '-24px -24px 0' }} className={wrapperClassName}>
+  <div style={{ margin: '-24px 0 0 0' }} className={wrapperClassName}>
     {top}
     <PageHeader key="pageheader" {...restProps} linkElement={Link} />
     {children ? <div className={'PageHeaderLayout-content'}>{children}</div> : null}
