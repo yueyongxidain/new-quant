@@ -2,7 +2,7 @@
  * @Author: 刘文柱 
  * @Date: 2018-10-18 10:08:30 
  * @Last Modified by: 刘文柱
- * @Last Modified time: 2018-11-16 17:21:17
+ * @Last Modified time: 2018-12-06 09:39:01
  */
 import fetch from 'dva/fetch';
 import { notification, message, language } from 'quant-ui';
@@ -35,12 +35,12 @@ const requestHeader = {
 function parseJSON(response) {
     return response.json();
 }
-function checkStatus(response) {
+function checkStatus(response, showMessage) {
     if (response.status >= 200 && response.status < 300) {
         return response;
     }
     const errortext = codeMessage[response.status] || response.statusText;
-    notification.error({
+    showMessage && notification.error({
         message: `${$("请求错误")} ${response.status}: ${response.url}`,
         description: errortext,
     });
@@ -59,12 +59,11 @@ function checkStatus(response) {
  */
 function request(url, newOptions, showMessage = true) {
     return fetch(url, newOptions)
-        .then(checkStatus)
+        .then((response) => checkStatus(response, showMessage))
         .then(parseJSON)
         .then(data => {
             if (data.errorCode == 0) {
-                let resData = data;
-                return resData;
+                return data;
             } else {
                 showMessage && message.error(data.errorMsg)
                 return data
@@ -73,35 +72,32 @@ function request(url, newOptions, showMessage = true) {
         .catch(e => {
             const { dispatch } = store;
             const status = e.name;
-            if (status === 401) {
+            if (status === 401 && showMessage) {
                 dispatch({
                     type: 'login/logout',
                 });
                 return {
-                    errorCode: 1,
+                    errorCode: status,
                 };
             }
-            if (status === 403) {
+            if (status === 403 && showMessage) {
                 dispatch(routerRedux.push('/exception/403'));
                 return {
-                    errorCode: 1,
+                    errorCode: status,
                 };
             }
-            if (status <= 504 && status >= 500) {
+            if (status <= 504 && status >= 500 && showMessage) {
                 dispatch(routerRedux.push('/exception/500'));
                 return {
-                    errorCode: 1,
+                    errorCode: status,
                 };
             }
-            if (status >= 404 && status < 422) {
+            if (status >= 404 && status < 422 && showMessage) {
                 dispatch(routerRedux.push('/exception/404'));
                 return {
-                    errorCode: 1,
+                    errorCode: status,
                 };
             }
-            // showMessage&&notification.error({
-            //     message: `请求错误 返回数据不存在！`,
-            // });
             return {
                 errorCode: 1,
             }
@@ -111,7 +107,7 @@ function request(url, newOptions, showMessage = true) {
  * 
  * @param {string} url 请求地址
  * @param {any} params 请求参数
- * @param {Boolean} showMessage 是否显示错误提示，默认为true
+ * @param {Boolean} showMessage 是否显示错误提示，默认为false
  */
 function GET(url, params, showMessage) {
     let _params = !!params ? "?" + stringify(params) : "";
@@ -126,7 +122,7 @@ function GET(url, params, showMessage) {
  * 
  * @param {string} url 请求地址
  * @param {any} params 请求参数
- * @param {Boolean} showMessage 是否显示错误提示，默认为true
+ * @param {Boolean} showMessage 是否显示错误提示，默认为false
  */
 function POST(url, params, showMessage) {
     return request(url, {
