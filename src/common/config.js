@@ -2,7 +2,7 @@
  * @Author: 刘文柱 
  * @Date: 2018-10-18 10:10:38 
  * @Last Modified by: 刘文柱
- * @Last Modified time: 2018-11-15 18:46:44
+ * @Last Modified time: 2018-12-07 17:35:08
  */
 import { language, Icon } from "quant-ui";
 import React from 'react';
@@ -11,6 +11,9 @@ import LogoAndTitle from '../assets/logo-title.png';
 import LoginLogo from '../assets/login-logo.png';
 import LOGIN_BG from "../assets/background.png";
 import flowImg from "../assets/flow-img.jpg";
+
+
+//demo工程
 //中文配置
 let zhConfig = {
     'TITLE': "{{title}}",                        //标题
